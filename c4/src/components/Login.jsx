@@ -13,10 +13,9 @@ export const Login = () => {
     })
     
 
-    // const handleLogin = ()=>{
-    //     dispatch(isLoggedin(true))
-    //     setUser({...formdata,[e.target.name]:e.target.value});
-    // }
+    const handleLogin = ()=>{
+        dispatch(isLoggedin(true))
+    }
 
     
     return (
@@ -27,14 +26,14 @@ export const Login = () => {
           type="text"
           name="username"
           placeholder="Enter Username"
-          onChange={(e)=>setUser({...user,user.name:e.target.value})}
+         
         />
         <input
           className="password"
           type="password"
           name="password"
           placeholder="Enter password"
-          onChange={(e)=>e.target.value}
+          
         />
         {/* On this button click make network req to find user with same username and password */}
         {/* get his role, if role is `admin` take him to `/orders` page otherwise take him to `/neworder` */}
