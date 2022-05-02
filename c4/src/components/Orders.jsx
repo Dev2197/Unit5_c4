@@ -1,30 +1,27 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders, Sort } from "../Redux/Orders/action";
 export const Orders = () => {
     //  Get all data when admin logs in and populate it
     // store it in redux
 
-    const [orders,setOrders] = useState([])
+    const orders =  useSelector((store)=>store.Orders.Orders);
+    // console.log(orders)
+    const dispatch = useDispatch()
 
     useEffect(()=>{
-      getOrders()
+      dispatch(getOrders())
     },[])
 
-    const getOrders = ()=>{
-
-      axios.get('http://localhost:8080/orders')
-  .then(function (response) {
-    // handle success
-
-    setOrders(response.data)
-    console.log(response.data);
-  })
-  }
+    
     return (
       <div>
         <div>
           <div>
-            <select className="controls" name="progress" id="progress">
+            <select className="controls" name="progress" id="progress"
+            onChange={(e)=>{dispatch(Sort(e.target.value))}}
+            >
               <option value="id">ID</option>
               <option value="status">Status</option>
               <option value="cost">Cost</option>
